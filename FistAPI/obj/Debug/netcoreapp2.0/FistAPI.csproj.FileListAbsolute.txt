@@ -1,0 +1,10 @@
+C:\Users\lpnam\Desktop\test_project\FistAPI\FistAPI\bin\Debug\netcoreapp2.0\FistAPI.deps.json
+C:\Users\lpnam\Desktop\test_project\FistAPI\FistAPI\bin\Debug\netcoreapp2.0\FistAPI.runtimeconfig.json
+C:\Users\lpnam\Desktop\test_project\FistAPI\FistAPI\bin\Debug\netcoreapp2.0\FistAPI.runtimeconfig.dev.json
+C:\Users\lpnam\Desktop\test_project\FistAPI\FistAPI\bin\Debug\netcoreapp2.0\FistAPI.dll
+C:\Users\lpnam\Desktop\test_project\FistAPI\FistAPI\bin\Debug\netcoreapp2.0\FistAPI.pdb
+C:\Users\lpnam\Desktop\test_project\FistAPI\FistAPI\obj\Debug\netcoreapp2.0\FistAPI.csproj.CoreCompileInputs.cache
+C:\Users\lpnam\Desktop\test_project\FistAPI\FistAPI\obj\Debug\netcoreapp2.0\FistAPI.AssemblyInfoInputs.cache
+C:\Users\lpnam\Desktop\test_project\FistAPI\FistAPI\obj\Debug\netcoreapp2.0\FistAPI.AssemblyInfo.cs
+C:\Users\lpnam\Desktop\test_project\FistAPI\FistAPI\obj\Debug\netcoreapp2.0\FistAPI.dll
+C:\Users\lpnam\Desktop\test_project\FistAPI\FistAPI\obj\Debug\netcoreapp2.0\FistAPI.pdb
