@@ -13432,6 +13432,7 @@
       "Microsoft.AspNetCore.All >= 2.0.0",
       "Microsoft.NETCore.App >= 2.0.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 2.0.0",
+      "MongoDB.Bson >= 2.4.4",
       "MongoDB.Driver >= 2.4.4",
       "MongoDB.Driver.Core >= 2.4.4"
     ]
@@ -13446,11 +13447,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\lpnam\\Desktop\\test_project\\FistAPI\\FistAPI\\FistAPI.csproj",
+      "projectUniqueName": "C:\\Users\\lpnam\\Documents\\FirstAPI\\FistAPI\\FistAPI.csproj",
       "projectName": "FistAPI",
-      "projectPath": "C:\\Users\\lpnam\\Desktop\\test_project\\FistAPI\\FistAPI\\FistAPI.csproj",
+      "projectPath": "C:\\Users\\lpnam\\Documents\\FirstAPI\\FistAPI\\FistAPI.csproj",
       "packagesPath": "C:\\Users\\lpnam\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\lpnam\\Desktop\\test_project\\FistAPI\\FistAPI\\obj\\",
+      "outputPath": "C:\\Users\\lpnam\\Documents\\FirstAPI\\FistAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -13491,6 +13492,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "2.0.0"
+          },
+          "MongoDB.Bson": {
+            "target": "Package",
+            "version": "2.4.4"
           },
           "Microsoft.NETCore.App": {
             "target": "Package",
