@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using FistAPI.Models;
-using FistAPI.Context;
 using MongoDB.Bson;
 using MongoDB.Driver.Core;
 using MongoDB.Driver;
