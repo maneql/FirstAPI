@@ -5,70 +5,70 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using FistAPI.Models;
+using FistAPI.IRepository;
 using FistAPI.Context;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Core;
+using Newtonsoft.Json;
 
 namespace FistAPI.Controllers
 {
     [Route("api/[controller]")]
     public class NhanVienController : Controller
     {
+        private readonly INVRepository _NVRepository;
 
-        MongoClientSettings settings = new MongoClientSettings();
-        MongoServerAddress address = new MongoServerAddress("localhost", 27017);
-        MongoClient client;
-        private string DBName = "QLNHANVIEN";
-
-        public NhanVienController()
+        public NhanVienController(INVRepository NVRepository)
         {
-            settings.Server = address;
-            client = new MongoClient();
+            _NVRepository = NVRepository;
         }
 
-
-        // GET: api/values
         [HttpGet]
-        public IEnumerable<NhanVien> GetAllNhanVien()
+        public Task<string> Get()
         {
-            var db = client.GetDatabase(DBName);
-            var collection = db.GetCollection<NhanVien>("NHAN_VIEN");
-            var qr = collection.AsQueryable<NhanVien>().ToList();
-            return qr;
+            return this.GetNV();
         }
 
-        // GET api/values/5
-        [HttpGet("{id}", Name = "GetNhanVien")]
-        public IActionResult GetNhanVienById(string id)
+        public async Task<string> GetNV()
         {
-            var db = client.GetDatabase(DBName);
-            var collection = db.GetCollection<NhanVien>("NHAN_VIEN");
-            var qr = collection.AsQueryable<NhanVien>().ToList();
-            var item = qr.FirstOrDefault(t => t.MA_NV == id);
-            if (item == null)
-            {
-                return NotFound();
-            }
-            return new ObjectResult(item);
+            var nhanviens = await _NVRepository.Get();
+            return JsonConvert.SerializeObject(nhanviens);
         }
 
-        // POST api/values
+        [HttpGet("{id}")]
+        public Task<string> Get(string id)
+        {
+            return this.GetNVById(id);
+        }
+
+        public async Task<string> GetNVById(string id)
+        {
+            var nhanvien = await _NVRepository.Get(id) ?? new NhanVien();
+            return JsonConvert.SerializeObject(nhanvien);
+        }
+
         [HttpPost]
-        public void Post([FromBody]string value)
+        public async Task<string> Post([FromBody] NhanVien nhanvien)
         {
+            await _NVRepository.Add(nhanvien);
+            return "";
         }
 
-        // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public async Task<string> Put(string id, [FromBody] NhanVien nhanvien)
         {
+            if (string.IsNullOrEmpty(id)) return "Invalid id !!!";
+            return await _NVRepository.Update(id,nhanvien);
         }
 
-        // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<string> Delete(string id)
         {
+            if (string.IsNullOrEmpty(id)) return "Invalid id !!!";
+            await _NVRepository.Remove(id);
+            return "";
         }
+
     }
 }
