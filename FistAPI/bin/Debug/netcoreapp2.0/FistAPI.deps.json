@@ -26,6 +26,7 @@
           "Microsoft.AspNetCore.All": "2.0.0",
           "Microsoft.NETCore.App": "2.0.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.0.0",
+          "MongoDB.Bson": "2.4.4",
           "MongoDB.Driver": "2.4.4",
           "MongoDB.Driver.Core": "2.4.4"
         },
