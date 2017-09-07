@@ -62,7 +62,7 @@ namespace FistAPI.Controllers
 
             collection.InsertOne(item);
 
-            return CreatedAtRoute("GetChucVu", new { ma = item.MA_CV });
+            return new ObjectResult(item);
         }
 
 

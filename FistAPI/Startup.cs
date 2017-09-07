@@ -2,20 +2,60 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using FistAPI.Models;
+using FistAPI.DbModels;
+using FistAPI.IRepository;
+using FistAPI.Repository;
+using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace FistAPI
 {
     public class Startup
     {
-        public void ConfigureServices(IServiceCollection services)
+        public IConfigurationRoot Configuration { get; }
+
+        public Startup(IHostingEnvironment env)
         {
-            services.AddDbContext<TodoContext>(opt => opt.UseInMemoryDatabase("TodoList"));
-            services.AddMvc();
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables()
+                ;
+            Configuration = builder.Build();
         }
 
-        public void Configure(IApplicationBuilder app)
+        public void ConfigureServices(IServiceCollection services)
         {
-            app.UseMvc();
+            services.AddMvc();
+            services.Configure<Settings>(o => { o.iConfigurationRoot = Configuration; });
+            services.AddTransient<INVRepository, NVRepository>();
+        }
+
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        {
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddDebug();
+
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+            }
+
+            app.UseStaticFiles();
+
+            app.UseMvc(routes => 
+            {
+            routes.MapRoute(
+                name: "Default",
+                template: "{controller=Home}/{action=Index}/{id?}");
+            });
         }
     }
 }
